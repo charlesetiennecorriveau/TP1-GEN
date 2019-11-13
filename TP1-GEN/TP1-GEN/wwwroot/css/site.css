@@ -23,6 +23,12 @@ body {
     width: 100%;
 }
 
+.search {
+    margin: 10px;
+    padding: 5px;
+    width: 100%;
+}
+
 /* QR code generator */
 #qrCode {
     margin: 15px;
