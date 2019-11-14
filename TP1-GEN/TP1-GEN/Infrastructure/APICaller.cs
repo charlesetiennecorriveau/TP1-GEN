@@ -123,7 +123,46 @@ namespace TP1_GEN.Infrastructure
                 film.Casting = casting;
                 film.Team = team;
             }
+
+            // TO-DO : NYT Reviews API
+            /*using (HttpClient client = new HttpClient())
+            {
+                string ApiKeyNYT = "JxpqJSjXKKXShYz3IvbeSuGcUJMGXfLG";
+                string apiUrl = $"https://api.nytimes.com/svc/movies/v2/reviews/search.json?query={film.Title}&api-key=yourkey{ApiKeyNYT}";
+
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+
+                client.BaseAddress = new Uri(apiUrl);
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+                var data = await response.Content.ReadAsStringAsync();
+                JObject filmResult = JObject.Parse(data);
+
+            }*/
             return film;
+        }
+        
+        public static async Task<string> GetTrailerAsync(string title)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string ytApi = "AIzaSyBaPxrQmBq0Iyd5A_aAgDCSit3IaL4t6xc";
+                string apiUrl = $"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q={title}%20Trailer&topicId=%2Fm%2F02vxn&type=video&key={ytApi}";
+
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+
+                client.BaseAddress = new Uri(apiUrl);
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+                var data = await response.Content.ReadAsStringAsync();
+                JObject filmResult = JObject.Parse(data);
+
+                string trailerUrl = "https://www.youtube.com/watch?v=" + (string)filmResult["items"][0]["id"]["videoId"];
+
+                return trailerUrl;
+            }
         }
     }
 }

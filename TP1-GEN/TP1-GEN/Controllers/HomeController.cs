@@ -47,5 +47,11 @@ namespace TP1_GEN.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public async Task<IActionResult> Trailer(string title)
+        {
+            string url = await APICaller.GetTrailerAsync(title);
+            return Redirect(url);
+        }
     }
 }

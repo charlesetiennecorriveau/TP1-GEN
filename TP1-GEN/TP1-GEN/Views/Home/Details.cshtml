@@ -52,14 +52,19 @@
                     </div>
                 </div>
                 <div class="row" id="actions">
-                    <div class="form-group">
-                        <button type="button" class="btn btn-secondary">
+                    <form asp-action="Ebay">
+                        <button type="submit" target="_blank" class="btn btn-secondary">
                             Buy on eBay <i class="fab fa-ebay"></i>
                         </button>
-                        <button type="button" class="btn btn-secondary">
+                        <input type="hidden" name="ebay" value="@Model.Title" />
+                    </form>
+                    <form asp-action="Trailer" class="flex-fill">
+                        <button target="_blank" type="submit" class="btn btn-secondary">
                             Watch Trailer <i class="fab fa-youtube"></i>
                         </button>
-                    </div>
+                        <input type="hidden" name="title" value="@Model.Title" />
+                    </form>
+                    <div class="col-md-8"></div>
                 </div>
             </div>
         </div>
