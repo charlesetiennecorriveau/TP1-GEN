@@ -9,32 +9,46 @@
 
 <div>
     <div class="row">
-        @*Big-ass image*@
-        <img class="img-fluid" src="@backdropUrl"/>
+        <div class="col-md-12">
+            <img class="img-fluid" src="@backdropUrl" />
+        </div>
     </div>
-    <br/>
+    <br />
     <div class="row">
         <div id="poster" class="col-md-2">
             <img class="img-fluid" src="@posterUrl" />
         </div>
         <div class="col-md-10">
-            <div class="row">
-                <h2 id="title">
-                    @Html.DisplayFor(model => model.Title)
-                </h2>
-            </div>
-            <div class="row" id="rating">
-                <span class="glyphicon glyphicon-star"></span>@Html.DisplayFor(model => model.Rating)
-            </div>
-            <div class="row" id="actions">
-                <button>eBay</button>
-                <button>YouTube Trailer</button>
+            <div class="info">
+                <div class="row">
+                    <h2 id="title">
+                        @Html.DisplayFor(model => model.Title)
+                    </h2>
+                </div>
+                <div class="row" id="rating">
+                    <div class="align-middle">
+                        <i class="fas fa-star"></i>@Html.DisplayFor(model => model.Rating)
+                    </div>
+                </div>
+                <div class="row" id="actions">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary">
+                            Buy on eBay <i class="fab fa-ebay"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary">
+                            Watch Trailer <i class="fab fa-youtube"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <br />
     <div class="row">
-        <h2>@Html.DisplayNameFor(model => model.Summary)</h2>
-        <p>@Html.DisplayFor(model => model.Summary)</p>
+        <div class="col-md-12">
+            <h2>@Html.DisplayNameFor(model => model.Summary)</h2>
+            <p>@Html.DisplayFor(model => model.Summary)</p>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -47,4 +61,4 @@
         </div>
     </div>
 </div>
-<a asp-action="Index">Back to List</a>
+<a class="btn btn-secondary" asp-action="Index">Back to List</a>
