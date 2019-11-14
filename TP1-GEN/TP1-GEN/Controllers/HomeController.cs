@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using TP1_GEN.Models;
 
 namespace TP1_GEN.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            List<FilmOverview> listFilms = await APICaller.GetNowPlayingAsync(1);
+            return View(listFilms);
         }
 
         public IActionResult About()
