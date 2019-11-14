@@ -25,10 +25,10 @@ namespace TP1_GEN.Controllers
             return View();
         }
 
-        public IActionResult Details(int filmId)
+        public async Task<ActionResult> Details(int Id)
         {
-
-            return View();
+            Film details = await APICaller.GetFilmDetailsAsync(Id);
+            return View(details);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

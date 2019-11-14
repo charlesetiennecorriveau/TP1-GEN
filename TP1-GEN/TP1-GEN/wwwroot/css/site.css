@@ -21,16 +21,10 @@ body {
     padding: 5px;
     width: 100%;
 }
-.movie {
-    
-}
 
 .details {
     margin-top: 10px;
-}
-
-.btnDetails {
-    text-align: right;
+    margin-bottom: 10px;
 }
 
 /* QR code generator */

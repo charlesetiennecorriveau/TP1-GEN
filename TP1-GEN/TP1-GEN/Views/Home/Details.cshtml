@@ -2,26 +2,33 @@
 
 @{
     ViewData["Title"] = "Details";
+    string posterUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + @Model.PosterUrl;
+    string backdropUrl = "https://image.tmdb.org/t/p/w1400_and_h450_face" + @Model.BackdropUrl;
+
 }
 
 <div>
     <div class="row">
         @*Big-ass image*@
+        <img class="img-fluid" src="@backdropUrl"/>
     </div>
+    <br/>
     <div class="row">
-        <div id="poster" class="col-md-1">
-            <img src="@Html.DisplayFor(model => model.PosterUrl)" />
+        <div id="poster" class="col-md-2">
+            <img class="img-fluid" src="@posterUrl" />
         </div>
-        <div class="col-md-11">
-            <div id="title" class="row">
-                @Html.DisplayFor(model => model.Title)
+        <div class="col-md-10">
+            <div class="row">
+                <h2 id="title">
+                    @Html.DisplayFor(model => model.Title)
+                </h2>
             </div>
             <div class="row" id="rating">
                 <span class="glyphicon glyphicon-star"></span>@Html.DisplayFor(model => model.Rating)
             </div>
             <div class="row" id="actions">
-                <button>@*EBAY*@</button>
-                <button>@*YouTube Trailer*@</button>
+                <button>eBay</button>
+                <button>YouTube Trailer</button>
             </div>
         </div>
     </div>

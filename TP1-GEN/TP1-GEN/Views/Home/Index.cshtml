@@ -28,7 +28,10 @@
                         @film.Title
                     </div>
                     <div class="col-3">
-                        <button type="button" class="btn btn-secondary float-right" asp-controller="Home" asp-action="Details">Details</button>
+                        <form asp-controller="Home" asp-action="Details">
+                            <button type="submit" class="btn btn-secondary float-right">Details</button>
+                            <input name="Id" type="hidden" value="@film.Id"/>
+                        </form>
                     </div>
                 </div>
             </div>

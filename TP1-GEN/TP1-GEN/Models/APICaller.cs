@@ -42,7 +42,7 @@ namespace TP1_GEN.Models
             return filmsNowPlaying;
         }
 
-        public static async Task<Film> getFilmDetailsAsync(int id)
+        public static async Task<Film> GetFilmDetailsAsync(int id)
         {
             using (HttpClient client = new HttpClient())
             {
