@@ -6,7 +6,7 @@
 }
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="index" id="searchForm">
+        <form asp-action="index" asp-controller="Home" id="searchForm">
             <input name="search" type="text" placeholder="Search..." id="search" />
         </form>
     </div>
@@ -14,7 +14,15 @@
 <div class="row">
     @foreach (var film in Model)
     {
-        string url = "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + @film.PosterUrl;
+        string url;
+        @if (film.PosterUrl != null)
+        {
+            url = "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + @film.PosterUrl;
+        }
+        else
+        {
+            url = "~/images/placeholder-poster.png";
+        }
         if (counter != 0 && counter % 4 == 0)
         {
         @:</div>
