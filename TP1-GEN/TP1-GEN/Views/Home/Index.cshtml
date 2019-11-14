@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TP1_GEN.Models.Film>
+﻿@model List<TP1_GEN.Models.FilmOverview>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -9,6 +9,7 @@
 <div class="row">
     @foreach (var film in Model)
     {
+        string url = "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + @film.PosterUrl;
         if (counter != 0 && counter % 4 == 0)
         {
             @:</div>
@@ -16,11 +17,11 @@
         }
         <div class="col-md-3">
             <div id="poster" class="row">
-                <img src="@film.PosterUrl" />
+                <img class="img-fluid" src="@url" />
             </div>
-            <div class="row" id="details">
+            <div class="row">
                 <div class="title">@film.Title</div>
-                <button type="button" asp-controller="Home" asp-action="Details">Details</button>
+                <button class="float-right" type="button" asp-controller="Home" asp-action="Details">Details</button>
             </div>
         </div>
     }
