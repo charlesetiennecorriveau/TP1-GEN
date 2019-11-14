@@ -56,7 +56,7 @@ namespace TP1_GEN
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{page=1}");
             });
         }
     }

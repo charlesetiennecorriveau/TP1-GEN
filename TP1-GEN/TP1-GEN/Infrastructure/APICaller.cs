@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using TP1_GEN.Models;
 
-namespace TP1_GEN.Models
+namespace TP1_GEN.Infrastructure
 {
     public class APICaller
     {

@@ -6,22 +6,27 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
+using TP1_GEN.Infrastructure;
 using TP1_GEN.Models;
 
 namespace TP1_GEN.Controllers
 {
     public class HomeController : Controller
     {
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int page, string search)
         {
-            List<FilmOverview> listFilms = await APICaller.GetNowPlayingAsync(1);
-            return View(listFilms);
-        }
-
-        public async Task<ActionResult> Index(string search)
-        {
-            List<FilmOverview> listFilms = await APICaller.SearchAsync(search);
-            return View(listFilms);
+            ViewData["Page"] = page;
+            ViewData["Search"] = search;
+            if (search == null)
+            {
+                List<FilmOverview> listFilms = await APICaller.GetNowPlayingAsync(page);
+                return View(listFilms);
+            }
+            else
+            {
+                List<FilmOverview> listFilms = await APICaller.SearchAsync(search);
+                return View(listFilms);
+            }
         }
 
         public IActionResult About()
