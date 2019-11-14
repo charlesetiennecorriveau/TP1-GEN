@@ -15,13 +15,13 @@
     @foreach (var film in Model)
     {
         string url;
-        @if (film.PosterUrl != null)
+        @if (film.PosterUrl != "")
         {
             url = "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + @film.PosterUrl;
         }
         else
         {
-            url = "~/images/placeholder-poster.png";
+            url = "/images/placeholder-poster.png";
         }
         if (counter != 0 && counter % 4 == 0)
         {
