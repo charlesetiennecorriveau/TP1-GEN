@@ -28,7 +28,7 @@ namespace TP1_GEN.Models
                 var data = await response.Content.ReadAsStringAsync();
                 JObject jObject = JObject.Parse(data);
 
-                
+
                 foreach (var film in jObject["results"])
                 {
                     filmsNowPlaying.Add(new FilmOverview
@@ -44,6 +44,8 @@ namespace TP1_GEN.Models
 
         public static async Task<Film> GetFilmDetailsAsync(int id)
         {
+            Film film = new Film();
+            // Get details
             using (HttpClient client = new HttpClient())
             {
                 string apiUrl = $"https://api.themoviedb.org/3/movie/{id}?api_key={ApiKey}";
@@ -57,24 +59,39 @@ namespace TP1_GEN.Models
                 var data = await response.Content.ReadAsStringAsync();
                 JObject filmResult = JObject.Parse(data);
 
-
-                //apiUrl = $"https://api.themoviedb.org/3/movie/{id}?api_key={ApiKey}";
-
-                //client.BaseAddress = new Uri(apiUrl);
-                //response = await client.GetAsync(apiUrl);
-                //data = await response.Content.ReadAsStringAsync();
-
-                Film film = new Film
-                {
-                    PosterUrl = (string)filmResult["poster_path"],
-                    Rating = (int)filmResult["vote_average"],
-                    Summary = (string)filmResult["overview"],
-                    Title = (string)filmResult["title"],
-                    BackdropUrl = (string)filmResult["backdrop_path"]
-                };
-
-                return film;
+                film.PosterUrl = (string)filmResult["poster_path"];
+                film.Rating = (int)filmResult["vote_average"];
+                film.Summary = (string)filmResult["overview"];
+                film.Title = (string)filmResult["title"];
+                film.BackdropUrl = (string)filmResult["backdrop_path"];
             }
+
+            // Get cast
+            using (HttpClient client = new HttpClient())
+            {
+                string apiUrl = $"https://api.themoviedb.org/3/movie/{id}/credits?api_key={ApiKey}";
+
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                client.BaseAddress = new Uri(apiUrl);
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+                var data = await response.Content.ReadAsStringAsync();
+                JObject filmCredits = JObject.Parse(data);
+
+                List<string> casting = new List<string>();
+                List<string> team = new List<string>();
+
+                foreach (var cast in filmCredits["cast"])
+                    casting.Add((string)cast["name"]);
+
+                foreach (var crew in filmCredits["crew"])
+                    team.Add((string)crew["name"]);
+
+                film.Casting = casting;
+                film.Team = team;
+            }
+            return film;
         }
     }
 }

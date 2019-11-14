@@ -4,7 +4,10 @@
     ViewData["Title"] = "Details";
     string posterUrl = "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + @Model.PosterUrl;
     string backdropUrl = "https://image.tmdb.org/t/p/w1400_and_h450_face" + @Model.BackdropUrl;
-
+    string crew = "";
+    string cast = "";
+    int crewCount = 1;
+    int castCount = 1;
 }
 
 <div>
@@ -53,11 +56,40 @@
     <div class="row">
         <div class="col-md-6">
             <h2>@Html.DisplayNameFor(model => model.Casting)</h2>
-            <p>@Html.DisplayFor(model => model.Casting)</p>
+            <p>
+
+                @foreach (var c in Model.Casting)
+                {
+                    if (castCount != Model.Casting.Count())
+                    {
+                        cast += c + ", ";
+                    }
+                    else
+                    {
+                        cast += c + ". ";
+                    }
+                    ++castCount;
+                }
+                @cast
+            </p>
         </div>
         <div class="col-md-6">
             <h2>@Html.DisplayNameFor(model => model.Team)</h2>
-            <p>@Html.DisplayFor(model => model.Team)</p>
+            <p>
+                @foreach (var c in Model.Team)
+                {
+                    if (crewCount != Model.Team.Count)
+                    {
+                        crew += c + ", ";
+                    }
+                    else
+                    {
+                        crew += c + ". ";
+                    }
+                    ++crewCount;
+                }
+                @crew
+            </p>
         </div>
     </div>
 </div>

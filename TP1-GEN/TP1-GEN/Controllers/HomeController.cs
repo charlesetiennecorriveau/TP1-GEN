@@ -18,6 +18,12 @@ namespace TP1_GEN.Controllers
             return View(listFilms);
         }
 
+        public async Task<ActionResult> Index(string search)
+        {
+            List<FilmOverview> listFilms = await APICaller.SearchFilmByNameAsync(search);
+            return View(listFilms);
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

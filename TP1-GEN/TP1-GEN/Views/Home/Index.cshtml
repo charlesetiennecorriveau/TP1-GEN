@@ -6,7 +6,9 @@
 }
 <div class="row">
     <div class="col-md-12">
-        <input type="text" placeholder="Search..." class="search">
+        <form asp-action="index" id="searchForm">
+            <input name="search" type="text" placeholder="Search..." id="search" />
+        </form>
     </div>
 </div>
 <div class="row">
@@ -16,7 +18,7 @@
         if (counter != 0 && counter % 4 == 0)
         {
         @:</div>
-        @:<div class="row">
+            @:<div class="row">
         }
         <div class="col-md-3">
             <div class="movie">
@@ -38,3 +40,10 @@
         </div>
     }
 </div>
+<script>
+    $("#searchForm").find("#search").keypress(function(e) {
+        if (e.which == 10 && e.which == 13) {
+            this.form.submit();
+        }
+    })
+</script>
