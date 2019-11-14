@@ -20,7 +20,7 @@ namespace TP1_GEN.Controllers
 
         public async Task<ActionResult> Index(string search)
         {
-            List<FilmOverview> listFilms = await APICaller.SearchFilmByNameAsync(search);
+            List<FilmOverview> listFilms = await APICaller.SearchAsync(search);
             return View(listFilms);
         }
 
