@@ -12,7 +12,7 @@ namespace TP1_GEN.Models
         public static async Task<List<FilmOverview>> GetNowPlayingAsync(int page)
         {
             // This got our key in it OwO
-            string apiUrl = "https://api.themoviedb.org/3/movie/now_playing?api_key=42ea10e4b84b36c36a064a410b108b2f&page=1";
+            string apiUrl = "https://api.themoviedb.org/3/movie/now_playing?api_key=42ea10e4b84b36c36a064a410b108b2f&page=" + page;
 
             List<FilmOverview> filmsNowPlaying = new List<FilmOverview>();
 
@@ -33,8 +33,9 @@ namespace TP1_GEN.Models
                     filmsNowPlaying.Add(new FilmOverview
                     {
                         PosterUrl = film["poster_path"].ToString(),
-                        Title = film["title"].ToString()
-                    });
+                        Title = film["title"].ToString(),
+                        Id = (int)film["id"]
+                    }); ;
                 }
 
 

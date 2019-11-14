@@ -9,5 +9,6 @@ namespace TP1_GEN.Models
     {
         public string PosterUrl  { get; set; }
         public string Title { get; set; }
+        public int Id { get; set; }
     }
 }
