@@ -5,7 +5,7 @@
     {
       "provider": "unpkg",
       "library": "bootstrap@4.3.1",
-      "destination": "wwwroot/bootstrap/"
+      "destination": "wwwroot/lib/bootstrap/"
     }
   ]
 }
