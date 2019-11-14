@@ -10,7 +10,7 @@
     </div>
     <div class="row">
         <div id="poster" class="col-md-1">
-            <img src="@Html.DisplayFor(model => model.PosterUrl)"/>
+            <img src="@Html.DisplayFor(model => model.PosterUrl)" />
         </div>
         <div class="col-md-11">
             <div id="title" class="row">
@@ -26,42 +26,18 @@
         </div>
     </div>
     <div class="row">
-        @*Summary*@
+        <h2>@Html.DisplayNameFor(model => model.Summary)</h2>
+        <p>@Html.DisplayFor(model => model.Summary)</p>
     </div>
     <div class="row">
         <div class="col-md-6">
-            @*Casting*@
+            <h2>@Html.DisplayNameFor(model => model.Casting)</h2>
+            <p>@Html.DisplayFor(model => model.Casting)</p>
         </div>
         <div class="col-md-6">
-            @*Equipe*@
+            <h2>@Html.DisplayNameFor(model => model.Team)</h2>
+            <p>@Html.DisplayFor(model => model.Team)</p>
         </div>
     </div>
-    <hr/>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PosterUrl)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PosterUrl)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Summary)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Summary)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
-    </dl>
 </div>
 <a asp-action="Index">Back to List</a>

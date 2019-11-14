@@ -4,24 +4,33 @@
     ViewData["Title"] = "Home Page";
     int counter = 0;
 }
-
-<input type="text" placeholder="Search..." class="search">
+<div class="row">
+    <div class="col-md-12">
+        <input type="text" placeholder="Search..." class="search">
+    </div>
+</div>
 <div class="row">
     @foreach (var film in Model)
     {
         string url = "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + @film.PosterUrl;
         if (counter != 0 && counter % 4 == 0)
         {
-            @:</div>
-            @:<div class="row">
+        @:</div>
+        @:<div class="row">
         }
         <div class="col-md-3">
-            <div id="poster" class="row">
-                <img class="" src="@url" />
-            </div>
-            <div class="row">
-                <div class="title">@film.Title</div>
-                <button class="float-right" type="button" asp-controller="Home" asp-action="Details">Details</button>
+            <div class="movie">
+                <div id="poster">
+                    <img class="img-fluid" src="@url" />
+                </div>
+                <div class="row details">
+                    <div class="col-9">
+                        @film.Title
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary float-right" asp-controller="Home" asp-action="Details">Details</button>
+                    </div>
+                </div>
             </div>
         </div>
     }

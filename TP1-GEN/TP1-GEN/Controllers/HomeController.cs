@@ -25,15 +25,9 @@ namespace TP1_GEN.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult Details(int filmId)
         {
-            ViewData["Message"] = "Your contact page.";
 
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
             return View();
         }
 
