@@ -69,7 +69,8 @@ namespace TP1_GEN.Models
                     PosterUrl = (string)filmResult["poster_path"],
                     Rating = (int)filmResult["vote_average"],
                     Summary = (string)filmResult["overview"],
-                    Title = (string)filmResult["title"]
+                    Title = (string)filmResult["title"],
+                    BackdropUrl = (string)filmResult["backdrop_path"]
                 };
 
                 return film;

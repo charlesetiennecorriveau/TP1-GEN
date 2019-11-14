@@ -8,6 +8,7 @@ namespace TP1_GEN.Models
     public class Film
     {
         public string PosterUrl { get; set; }
+        public string BackdropUrl { get; set; }
         public string Title { get; set; }
         public string Summary { get; set; }
         public List<string> Casting { get; set; }
