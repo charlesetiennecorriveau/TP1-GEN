@@ -164,5 +164,28 @@ namespace TP1_GEN.Infrastructure
                 return trailerUrl;
             }
         }
+
+        public static async Task<string> GetEbayListingAsync(string title)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string ebayApi = "TeamOrth-movieGEN-PRD-2387e50aa-74952026";
+                var apiUrl = $"https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsAdvanced&SERVICE-VERSION=1.0.0&SECURITY-APPNAME={ebayApi}&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords={title}%20movie&categoryId=11232&itemFilter(0).name=Condition&itemFilter(0).value=New&paginationInput.entriesPerPage=1";
+
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+
+                client.BaseAddress = new Uri(apiUrl);
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+                var data = await response.Content.ReadAsStringAsync();
+                JObject filmResult = JObject.Parse(data);
+
+                //string listingUrl = (string)filmResult["findItemsAdvancedResponse"][0]["searchResult"][0]["item"][0]["viewItemURL"][0];
+                string listingUrl = (string)filmResult["findItemsAdvancedResponse"][0]["itemSearchURL"][0];
+
+                return listingUrl;
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp;
 using Newtonsoft.Json.Linq;
 using TP1_GEN.Infrastructure;
 using TP1_GEN.Models;
@@ -51,6 +52,12 @@ namespace TP1_GEN.Controllers
         public async Task<IActionResult> Trailer(string title)
         {
             string url = await APICaller.GetTrailerAsync(title);
+            return Redirect(url);
+        }
+
+        public async Task<IActionResult> EbayListing(string title)
+        {
+            string url = await APICaller.GetEbayListingAsync(title);
             return Redirect(url);
         }
     }
