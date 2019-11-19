@@ -13,12 +13,30 @@
     @RenderSection("scripts", false)
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container">
-            <div class="navbar-header">
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Gestionnaire de films</a>
-                <a asp-action="About">À propos</a>
+    @*<nav class="navbar navbar-dark bg-dark justify-content-between">
+            <div class="container">
+                <div class="navbar-header">
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Gestionnaire de films</a>
+                    <a class="nav-link" asp-action="About">À propos</a>
+                </div>
             </div>
+        </nav>*@
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a asp-action="Index" class="navbar-brand">Gestionnaire de films</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a asp-action="Index" class="nav-link">Gestionnaire</a>
+                </li>
+                <li class="nav-item active">
+                    <a asp-action="About" class="nav-link">À propos</a>
+                </li>
+            </ul>
         </div>
     </nav>
 
