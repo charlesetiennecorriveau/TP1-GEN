@@ -1,0 +1,16 @@
+﻿@model List<TP1_GEN.Models.Review>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+@foreach (var review in Model)
+{
+    <div class="row">
+        <div class="col-6">
+            <a href="@review.Url">@review.Headline</a>
+        </div>
+        <div class="col-6">@review.Summarry</div>
+    </div>
+}

@@ -14,5 +14,6 @@ namespace TP1_GEN.Models
         public List<string> Casting { get; set; }
         public List<string> Team { get; set; }
         public float Rating { get; set; }
+        public int Id { get; set; }
     }
 }

@@ -77,6 +77,8 @@ namespace TP1_GEN.Infrastructure
         public static async Task<Film> GetFilmDetailsAsync(int id)
         {
             Film film = new Film();
+
+            film.Id = id;
             // Get details
             using (HttpClient client = new HttpClient())
             {
@@ -124,25 +126,10 @@ namespace TP1_GEN.Infrastructure
                 film.Team = team;
             }
 
-            // TO-DO : NYT Reviews API
-            /*using (HttpClient client = new HttpClient())
-            {
-                string ApiKeyNYT = "JxpqJSjXKKXShYz3IvbeSuGcUJMGXfLG";
-                string apiUrl = $"https://api.nytimes.com/svc/movies/v2/reviews/search.json?query={film.Title}&api-key=yourkey{ApiKeyNYT}";
 
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
-
-                client.BaseAddress = new Uri(apiUrl);
-                HttpResponseMessage response = await client.GetAsync(apiUrl);
-                var data = await response.Content.ReadAsStringAsync();
-                JObject filmResult = JObject.Parse(data);
-
-            }*/
             return film;
         }
-        
+
         public static async Task<string> GetTrailerAsync(string title)
         {
             using (HttpClient client = new HttpClient())
@@ -185,6 +172,37 @@ namespace TP1_GEN.Infrastructure
                 string listingUrl = (string)filmResult["findItemsAdvancedResponse"][0]["itemSearchURL"][0];
 
                 return listingUrl;
+            }
+        }
+        public static async Task<List<Review>> GetMovieReviews(string title)
+        {
+            List<Review> reviews = new List<Review>();
+            // TO-DO : NYT Reviews API
+            using (HttpClient client = new HttpClient())
+            {
+                string ApiKeyNYT = "JxpqJSjXKKXShYz3IvbeSuGcUJMGXfLG";
+                string apiUrl = $"https://api.nytimes.com/svc/movies/v2/reviews/search.json?query={title}&api-key={ApiKeyNYT}";
+
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+
+
+                client.BaseAddress = new Uri(apiUrl);
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+                var data = await response.Content.ReadAsStringAsync();
+                JObject filmResult = JObject.Parse(data);
+
+                foreach (var review in filmResult["results"])
+                {
+                    reviews.Add(new Review()
+                    {
+                        Headline = review["headline"].ToString(),
+                        Summarry = review["summary_short"].ToString(),
+                        Url = review["link"]["url"].ToString()
+                    });
+                }
+                return reviews;
             }
         }
     }

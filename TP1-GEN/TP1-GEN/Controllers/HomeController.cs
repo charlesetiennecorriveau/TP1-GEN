@@ -43,6 +43,12 @@ namespace TP1_GEN.Controllers
             return View(details);
         }
 
+        public async Task<ActionResult> Reviews(string title)
+        {
+            List<Review> reviews = await APICaller.GetMovieReviews(title);
+            return View(reviews);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
